@@ -1,0 +1,16 @@
+{
+    "m_ClassifierDirectory": "Watson/Scripts/Editor/Classifiers/",
+    "m_TimeOut": 30.0,
+    "m_MaxRestConnections": 5,
+    "m_Credentials": [
+        {
+            "m_ServiceID": "AlchemyAPIV1",
+            "m_URL": "https://gateway-a.watsonplatform.net/calls",
+            "m_User": null,
+            "m_Password": null,
+            "m_Apikey": "e020a384f0a0b95df20ffbd8060dd9ac7b7cbc96",
+            "m_Note": "It may take up to 5 minutes for this key to become active"
+        }
+    ],
+    "m_Variables": []
+}
