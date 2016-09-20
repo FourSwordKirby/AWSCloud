@@ -11,13 +11,14 @@ public class PersonController : MonoBehaviour {
     public DialogBox messageBox;
     public InputField chatBox;
 	NLPInterface nlp;
+	string curPath;
 
 	public FaceBodyController faceBody;
 
     public List<KeyValuePair<string, string>> currentDialog;
     public int dialogIndex;
 
-    public int currentState; //Use this to track the progress in the "story"
+    public int currentState = 1; //Use this to track the progress in the "story"
 
 	// Use this for initialization
 	void Start () {
@@ -28,20 +29,17 @@ public class PersonController : MonoBehaviour {
 	void Update () {
         if (messageBox.dialogCompleted)
         {
-            if (Input.GetKeyDown(KeyCode.Space))
-            {
-                if(currentDialog != null && dialogIndex < currentDialog.Count)
-                {
-                    messageBox.displayDialog(currentDialog[dialogIndex].Key, currentDialog[dialogIndex].Value);
-                    dialogIndex++;
-                }
-                else
-                {
-                    currentDialog = null;
-                    dialogIndex = 0;
-                    chatBox.interactable = true;
-                }
-            }
+			if(currentDialog != null && dialogIndex < currentDialog.Count && Input.GetKeyDown(KeyCode.Space))
+			{
+				messageBox.displayDialog(currentDialog[dialogIndex].Key, currentDialog[dialogIndex].Value);
+				dialogIndex++;
+			}
+			else if (currentDialog != null && dialogIndex == currentDialog.Count)
+			{
+//				currentDialog = null;
+				dialogIndex = 0;
+				chatBox.interactable = true;
+			}
         }
 	}
 
@@ -61,10 +59,18 @@ public class PersonController : MonoBehaviour {
 		print(nlp.curSentiment);
 
 		//Insert Logic for progressing the "story"
+		FindNextDialogPath();
 
-		currentDialog = getDialogFromFile(Application.streamingAssetsPath + "/start.txt");
+		currentDialog = getDialogFromFile(curPath);
 		messageBox.displayDialog(currentDialog[dialogIndex].Key, currentDialog[dialogIndex].Value);
 		dialogIndex++;
+	}
+
+	void FindNextDialogPath() {
+		currentState++;
+		string newPath = Application.streamingAssetsPath + "/" + nlp.curSentiment + currentState + ".txt";
+		if (System.IO.File.Exists (newPath))
+			curPath = newPath;
 	}
 
     public List<KeyValuePair<string, string>> getDialogFromFile(string filename)
