@@ -13,7 +13,9 @@ public class PersonController : MonoBehaviour {
 	NLPInterface nlp;
 	string curPath;
 
+	// Stuff on screen that changes based on emotion
 	public FaceBodyController faceBody;
+	public FaceBodyController flowers;
 
     public List<KeyValuePair<string, string>> currentDialog;
     public int dialogIndex;
