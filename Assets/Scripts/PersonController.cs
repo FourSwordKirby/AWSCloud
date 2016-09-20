@@ -39,7 +39,6 @@ public class PersonController : MonoBehaviour {
 			else if (currentDialog != null && dialogIndex == currentDialog.Count)
 			{
 //				currentDialog = null;
-				dialogIndex = 0;
 				chatBox.interactable = true;
 			}
         }
@@ -50,6 +49,7 @@ public class PersonController : MonoBehaviour {
     }
 
 	IEnumerator DoInterpretResponse() {
+		dialogIndex = 0;
 		string response = chatBox.text;
 //		Debug.Log(response);
 		chatBox.text = "";
