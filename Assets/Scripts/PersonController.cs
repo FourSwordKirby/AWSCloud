@@ -12,6 +12,8 @@ public class PersonController : MonoBehaviour {
     public InputField chatBox;
 	NLPInterface nlp;
 
+	public FaceBodyController faceBody;
+
     public List<KeyValuePair<string, string>> currentDialog;
     public int dialogIndex;
 
