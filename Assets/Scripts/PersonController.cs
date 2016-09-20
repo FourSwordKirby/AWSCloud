@@ -60,6 +60,8 @@ public class PersonController : MonoBehaviour {
 		while (nlp.isInterpreting) yield return new WaitForEndOfFrame();
 		print(nlp.curSentiment);
 
+		AnimateEmotionChange ();
+
 		//Insert Logic for progressing the "story"
 		FindNextDialogPath();
 
@@ -89,4 +91,22 @@ public class PersonController : MonoBehaviour {
         }
         return dialog;
     }
+
+	void AnimateEmotionChange() {
+		if (nlp.curSentiment == "positive") {
+			faceBody.makePositive ();
+			flowers.makePositive ();
+		}
+		if (nlp.curSentiment == "negative") {
+			faceBody.makeNegative();
+			flowers.makeNeutral ();
+		}
+		if (nlp.curSentiment == "neutral") {
+			faceBody.makeNeutral ();
+			flowers.makeNeutral ();
+		}
+
+	}
+
 }
+
