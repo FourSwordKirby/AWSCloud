@@ -62,7 +62,7 @@ public class PersonController : MonoBehaviour {
 
 		//Insert Logic for progressing the "story"
 
-		currentDialog = getDialogFromFile(Application.streamingAssetsPath + "/test.txt");
+		currentDialog = getDialogFromFile(Application.streamingAssetsPath + "/start.txt");
 		messageBox.displayDialog(currentDialog[dialogIndex].Key, currentDialog[dialogIndex].Value);
 		dialogIndex++;
 	}
